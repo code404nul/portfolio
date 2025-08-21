@@ -1,0 +1,70 @@
+/* Arrière-plan sombre avec un dégradé */
+body {
+    background-color: #0d0d0d; /* Couleur de secours */
+    overflow: hidden;
+    margin: 0; /* Supprime les marges pour éviter les décalages */
+}
+
+/* Canvas pour les connexions */
+canvas#connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place le canvas derrière les bulles */
+    background: transparent; /* Assure que le canvas est transparent */
+}
+
+.degradé-haut {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Étire le dégradé horizontalement */
+    height: 50%; /* Réduit la hauteur du dégradé */
+    background: radial-gradient(ellipse at top left, #ed6e06 0%, #0d0d0d 50%);
+    z-index: -2; /* Place le dégradé derrière les bulles */
+}
+
+/* Style des bulles */
+.point {
+    background: linear-gradient(135deg, aquamarine, rgb(11, 215, 147));
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+
+    position: absolute; /* Permet aux bulles de se déplacer */
+    overflow: hidden; /* Empêche l'image de dépasser */
+}
+
+.point::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(135deg, rgb(11, 215, 147), aquamarine);
+    border-radius: 50%;
+    z-index: -1; /* Place le contour derrière */
+}
+
+.point img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover; /* Ajuste l'image pour remplir la div */
+}
+
+/* Effet au survol des bulles */
+.point:hover {
+    width: 150px;
+    height: 150px;
+    transition: width 0.3s, height 0.3s;
+    box-shadow: 0 0 70px rgb(11, 215, 147);
+}
